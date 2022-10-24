@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<form th:action="@{/guest/registration}" th:object="${user}" method="post" class="registration">
+    Enter your login <input th:field="*{login}" placeholder="Login"/>
+    <p th:if="${#fields.hasErrors('login')}" th:errors="*{login}" class="error-message">${errors.login}</p> <br/>
+    Enter username visible for other users<input th:field="*{username}" placeholder="Username"/>
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message">${errors.username}</p><br/>
+    Enter your password<input th:field="*{newPassword}" placeholder="Password"/>
+    <p th:if="${#fields.hasErrors('newPassword')}" th:errors="*{newPassword}" class="error-message">${errors.newPassword}</p><br/>
+    Confirm your password<input th:field="*{confirmPassword}" placeholder="Confirm password"/>
+    <p th:if="${#fields.hasErrors('passwordMatch')}" th:errors="*{passwordMatch}" class="error-message">${errors.passwordMatch}</p><br/>
+    Enter your email<input th:field="*{email}" placeholder="Email"/>
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message">${errors.email}</p><br/>
+
+    <input type="submit" value="Register" class="button"/>
+</form>
+</body>
+</html>
