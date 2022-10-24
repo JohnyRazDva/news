@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:object="${news}" class="view-news">
+        <div class="add-table-margin">
+            <table class="news_text_format">
+                <tr>
+                    <td class="space_around_title">
+                        Title
+                    </td>
+                    <td class="space_around_view_text">
+                        <div class="word-breaker">
+                            <span th:text="*{title}"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="space_around_title">
+                        Date:
+                    </td>
+                    <td class="space_around_view_text">
+                        <div class="word-breaker">
+                            <span th:text="*{date}"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="space_around_title">
+                        Brief
+                    </td>
+                    <td class="space_around_view_text">
+                        <div class="word-breaker">
+                            <span th:text="*{brief}"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="space_around_title">
+                        Content
+                    </td>
+                    <td class="space_around_view_text">
+                        <div class="word-breaker">
+                            <span th:text="*{content}"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="space_around_title">
+                        Author:
+                    </td>
+                    <td class="space_around_view_text">
+                        <div class="word-breaker">
+                            <span th:text="*{{user.username}}"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="view-button">
+                <div class="first-view-button">
+                    <a th:href="@{'admin/delete' + ${news.id}}" class="button">delete</a>
+                </div>
+                <div class="second-view-button">
+                    <a th:href="@{'admin/edit' + ${news.id}}" class="button">edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

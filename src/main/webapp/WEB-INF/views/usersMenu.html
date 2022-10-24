@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="users-menu">
+        <div class="users-list">
+            <form th:action="@{/admin/usersList}" method="POST">
+                <select name="login">
+                    <option th:each="user: ${users}" th:value="${user.login}" th:text="${user.username}">
+                    </option>
+                </select>
+                <input type="submit" value="show details" class="button"/>
+            </form>
+        </div>
+
+    </div>
+    <div th:switch="${user}">
+        <p th:case="null"></p>
+        <div th:case="*" class="user-details">
+            <div class="user-login">
+                User login: <span th:text="${user.login}"></span><br>
+                Username: <span th:text="${user.username}"></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
